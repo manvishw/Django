@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3 class='p-5'>Repo List {{ length }}</h3>
+
+    <div class="container">
+        <div class="row">
+            {% for data in context %}
+                <div class="col m-2">
+                    <div class="card" style="width: 16rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ data.name | default:'Not Mentioned' }}</h5>
+                            <h5 class="card-title">{{ data.created_at|slice:10 | default:'Not Mentioned'}}</h5>
+                            <p class="card-text">{{ data.description | default:'Not Mentioned'}}</p>
+                            <a href={{ data.svn_url }} class="btn btn-primary">Go My Repo</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock content %}

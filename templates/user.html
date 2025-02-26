@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="p-4">Git User Details</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card" style="width: 18rem">
+        <img src="{{avatar}}" class="card-img-top" alt="{{username}}" />
+        <div class="card-body">
+          <h5 class="card-title">{{name|default:'Not Mentioned'}}</h5>
+          <p class="card-text">{{bio|default:'Not Mentioned'}}</p>
+
+          <form action="{% url 'repos' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="gitname" value={{username}} />
+            <button type="submit" class='btn btn-primary'>Checkout My Repos</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Followers</h5>
+            <p class="card-text">{{followers|default:'Not Mentioned'}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Personal Details</h5>
+            <p class="card-text">
+              Location : {{location|default:'Not Mentioned'}}
+            </p>
+            <p class="card-text">
+              Created Date : {{created_at|default:'Not Mentioned'}}
+            </p>
+            <p class="card-text">Email : {{email|default:'Not Mentioned'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
